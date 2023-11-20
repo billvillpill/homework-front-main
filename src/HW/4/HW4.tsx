@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import s from './HW4.module.css';
+import  css from './HW4.module.css';
 import { Button } from './Button';
 import { Input } from './Input';
 
@@ -21,30 +21,31 @@ export const HW4 = () => {
     setTexts([currentText, ...texts]);
     setCurrentText('');
   };
+  console.log(1%2)
 
   return (
     <div id={'hw04'}>
-      {/*{currentText ? (*/}
-      {/*  <h1 id={'hw04-text'}>{currentText}</h1>*/}
-      {/*) : (*/}
-      {/*  <h1 id={'hw04-default-text'}>Здесь появится новое дело</h1>*/}
-      {/*)}*/}
+      {currentText ? (
+        <h1 id={'hw04-text'}>{currentText}</h1>
+      ) : (
+        <h1 id={'hw04-default-text'}>Здесь появится новое дело</h1>
+      )}
 
-      {/*<Input НЕ ХВАТАЕТ АРГУМЕНТОВ />*/}
+      <Input currentText={currentText} setCurrentText={setCurrentText} />
 
-      {/*<Button НЕ ХВАТАЕТ АРГУМЕНТОВ />*/}
+      <Button name={"Сохранить"} callBack={handleSave} />
 
-      {/*<h1 style={{ marginTop: '50px' }}>СПИСОК ДЕЛ НА ДЕНЬ:</h1>*/}
+      <h1 style={{ marginTop: '50px' }}>СПИСОК ДЕЛ НА ДЕНЬ:</h1>
 
-      {/*<ol id={'hw04-tasks'}>*/}
-      {/*  {texts.map((el, index) => {*/}
-      {/*    return (*/}
-      {/*      <li key={index} id={`hw04-task-${index}`} className={ЕСЛИ ЧЕТН ? S.chetNechet : ''}>*/}
-      {/*        {el}*/}
-      {/*      </li>*/}
-      {/*    );*/}
-      {/*  })}*/}
-      {/*</ol>*/}
+      <ol id={'hw04-tasks'}>
+        {texts.map((el, index) => {
+          return (
+            <li key={index} id={`hw04-task-${index}`} className={(index % 2) !== 0 ? css.chetNechet : ''}>  {/* className={Ecли ЧЕТН ? S.chetNechet : ''} */}
+              {el}
+            </li>
+          );
+        })}
+      </ol>
     </div>
   );
 };
